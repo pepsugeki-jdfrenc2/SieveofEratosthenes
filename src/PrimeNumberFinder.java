@@ -1,29 +1,21 @@
 /**
- * A prime number finder class that finds the prime numbers up to n bsed on a user input.
+ * A prime number finder class that finds the prime numbers up to n.
  * Author: John French
  * Version: 1-13-23
  */
 
 import java.util.Arrays;
 import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class PrimeNumberFinder {
-    public static void main(String[] args) {
-        int limit = 0;
-        Scanner scanner = new Scanner(System.in);
-        //While loop for user input and input validation
-        while(true){
-            System.out.print("Enter the limit: ");
-            try {
-                limit = scanner.nextInt();
-                break;
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid input, please enter a number");
-                scanner.nextLine();
-                continue;
-            }
-        }
+    /**
+     * A mehthod that finds all prime numbers up to the argument aLimit.
+     * @param aLimit the upper limit of prime numbers to search for
+     * @param aVerbose Whether the code prints the prime numbers found
+     */
+    public void finder(int aLimit, boolean aVerbose) {
+        boolean verbose = aVerbose;
+        int limit = aLimit;
         //Start time begins after user input
         long startTime = System.nanoTime();
         boolean[] primes = new boolean[limit + 1]; //An array of booleans that correlate to that position
@@ -39,13 +31,16 @@ public class PrimeNumberFinder {
             }
         }
         //Loop to print the prime numbers
-        for (int i = 0; i <= limit; i++) {
-            if (primes[i]) {
-                System.out.print(i + " ");
+        if(verbose){
+            for (int i = 0; i <= limit; i++) {
+                if (primes[i]) {
+                    System.out.print(i + " ");
+                }
             }
         }
+
         //Print the final runtime.
         long endTime = System.nanoTime();
-        System.out.println("\nTotal runtime: " + (endTime - startTime) + " ns");
+        System.out.println("Total runtime: " + (endTime - startTime) + " ns\n");
     }
 }
